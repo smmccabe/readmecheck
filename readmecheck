@@ -1,0 +1,53 @@
+#!/bin/bash
+
+function readme_check() {
+    SUCCESS=0
+    FILENAME="$1/README.md"
+
+    if [ ! -f $FILENAME ]
+    then
+        echo "$FILENAME doesn't exist"
+        return 1
+    fi
+
+    if ! grep -q "Introduction" $FILENAME
+    then
+        echo "$FILENAME doesn't contain an introduction"
+        SUCCESS=1
+    fi
+
+    if ! grep -q "Requirements" $FILENAME
+    then
+        echo "$FILENAME doesn't contain requirements"
+        SUCCESS=1
+    fi
+
+    if ! grep -q "Installation" $FILENAME
+    then
+        echo "$FILENAME doesn't contain installation instructions"
+        SUCCESS=1
+    fi
+
+    if ! grep -q "Configuration" $FILENAME
+    then
+        echo "$FILENAME doesn't contain configuration instructions"
+        SUCCESS=1
+    fi
+
+    return $SUCCESS
+}
+
+SUCCESS=0
+
+for entry in "${1%/}"/*
+do
+    if [ -d $entry ]
+    then
+        if ! readme_check "$entry"
+        then
+            SUCCESS=1
+        fi    
+    fi
+done
+
+exit $SUCCESS
