@@ -12,14 +12,17 @@ sudo mv readmecheck /usr/local/bin/readmecheck
 
 ## Usage
 
+check all modules on a drupal 7 site
 ```
 readmecheck sites/all/modules
 ```
 
+check a specific module
 ```
 readmecheck commerce_shipping
 ```
 
+check your custom module folder on drupal 8
 ```
 readmecheck modules/custom
 ```
