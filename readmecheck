@@ -51,7 +51,7 @@ function readme_check() {
     return $SUCCESS
 }
 
-SUCCESS=0
+EXIT_STATUS=0
 
 if [[ -z "$1" ]]; then
   usage
@@ -73,9 +73,9 @@ do
     then
         if ! readme_check "$entry"
         then
-            SUCCESS=1
+            EXIT_STATUS=1
         fi
     fi
 done
 
-exit $SUCCESS
+exit $EXIT_STATUS
